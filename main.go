@@ -84,7 +84,7 @@ func mergeRecursive(chans ...<-chan int) <-chan int {
 }
 
 func mergeTwo(ch1, ch2 <-chan int) <-chan int {
-	var c chan int
+	c := make(chan int)
 	go func() {
 		defer close(c)
 		for ch1 != nil || ch2 != nil {
