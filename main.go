@@ -13,8 +13,8 @@ func main() {
 	b := asChan(10, 11, 12, 13, 14, 15, 16, 17, 18, 19)
 	c := asChan(20, 21, 22, 23, 24, 25, 26, 27, 28, 29)
 
-	for i := range mergeReflect(a, b, c) {
-		fmt.Println("mergeReflex", i)
+	for i := range mergeRecursive(a, b, c) {
+		fmt.Println("mergeRecursive", i)
 	}
 
 	// var forever chan int
@@ -33,12 +33,12 @@ func merge(chans ...<-chan int) <-chan int {
 				for v := range c {
 					out <- v
 				}
-				fmt.Println("done routine")
+				// fmt.Println("done routine")
 				wg.Done()
 			}(c)
 		}
 		wg.Wait()
-		fmt.Println("close channel!")
+		// fmt.Println("close channel!")
 		close(out)
 	}()
 	return out
@@ -116,7 +116,7 @@ func asChan(vs ...int) <-chan int {
 		defer close(c)
 		for _, v := range vs {
 			c <- v
-			time.Sleep(time.Duration(rand.Intn(700)) * time.Millisecond)
+			time.Sleep(time.Duration(rand.Intn(10)) * time.Millisecond)
 		}
 	}()
 	return c
