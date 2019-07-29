@@ -27,6 +27,7 @@ var funcs = []struct {
 	f    func(...<-chan int) <-chan int
 }{
 	{"goroutines", merge},
+	{"reflect", mergeReflect},
 	{"recursive", mergeRecursive},
 }
 

@@ -92,14 +92,14 @@ func mergeTwo(ch1, ch2 <-chan int) <-chan int {
 			case v, ok := <-ch1:
 				if !ok {
 					ch1 = nil
-					fmt.Println("ch1 is done")
+					// fmt.Println("ch1 is done")
 					continue
 				}
 				c <- v
 			case v, ok := <-ch2:
 				if !ok {
 					ch2 = nil
-					fmt.Println("ch2 is done")
+					// fmt.Println("ch2 is done")
 					continue
 				}
 				c <- v
